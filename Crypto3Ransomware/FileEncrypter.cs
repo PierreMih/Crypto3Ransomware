@@ -17,21 +17,20 @@ public static class FileEncrypter
                 FileMode.Open, FileAccess.Read, FileShare.Read,
                 bufferSize: BlocSize);
 
-        var bytes = new byte[0x1000];
-        int numRead;
+        var bytes = new byte[0x100];
         // ConcurrentBag<byte[]> bytesEncrypted = [];
         var aesEncryptor = new MyAes().GetEncryptor();
         
         using var outputStream = new FileStream(pathToWriteEncryptedFile, FileMode.Append, FileAccess.Write,
             FileShare.ReadWrite, bufferSize: BlocSize);
 
-        while (sourceStream.Read(bytes, Offset, bytes.Length) != 0)
+        while (sourceStream.Read(bytes, Offset, BlocSize) > 0)
         {
             var hashedBytes = aesEncryptor.TransformFinalBlock(bytes, 0,BlocSize);
             outputStream.Write(hashedBytes);
         }
-
-        sourceStream.Close();
+        
         outputStream.Close();
+        sourceStream.Close();
     }
 }
