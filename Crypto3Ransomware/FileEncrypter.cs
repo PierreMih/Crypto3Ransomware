@@ -17,7 +17,7 @@ public static class FileEncrypter
                 FileMode.Open, FileAccess.Read, FileShare.Read,
                 bufferSize: BlocSize);
 
-        var bytes = new byte[0x100];
+        var bytes = new byte[BlocSize];
         // ConcurrentBag<byte[]> bytesEncrypted = [];
         var aesEncryptor = new MyAes().GetEncryptor();
         
