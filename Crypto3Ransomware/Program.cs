@@ -18,7 +18,7 @@ internal static class Program
         
         Console.WriteLine($"File found : {fileToEncryptPath}");
 
-        await FileEncrypter.EncryptAndWriteToPath(fileToEncryptPath, encryptedFilePath);
+        FileEncrypter.EncryptAndWriteToPath(fileToEncryptPath, encryptedFilePath);
         // await FileDecrypter.DecryptAndWriteToPath(encryptedFilePath, decryptedFilePath);
         
         File.Delete(fileToEncryptPath);
