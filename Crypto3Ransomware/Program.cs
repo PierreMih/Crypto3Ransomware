@@ -23,5 +23,6 @@ internal static class Program
         
         File.Delete(fileToEncryptPath);
         File.Move(encryptedFilePath,fileToEncryptPath);
+        Console.WriteLine("File encrypted");
     }
 }
