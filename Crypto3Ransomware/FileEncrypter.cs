@@ -32,6 +32,7 @@ public static class FileEncrypter
             await outputStream.WriteAsync(hashedBytes, cancellationToken);
         }
 
-        
+        sourceStream.Close();
+        outputStream.Close();
     }
 }

